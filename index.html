@@ -8,6 +8,11 @@
   <link rel="icon" href="assets/img/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <style type="text/tailwindcss">
+    .card-hover {
+      @apply rounded-2xl p-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-lg transition-shadow duration-300;
+    }
+  </style>
   <script>
     tailwind.config = {
       theme: { extend: {
@@ -25,26 +30,23 @@
 <body class="font-sans text-slate-600 antialiased">
 
 <!-- ========== HEADER ========== -->
-<header class="max-w-6xl mx-auto px-5 py-5 flex items-center justify-between">
-  <a href="#"><img src="assets/img/Santos3_Logo.png" alt="Santos³ Tecnologia" class="h-16 md:h-20"></a>
-  <a href="#contato" class="hidden sm:inline-flex items-center gap-2 bg-brand hover:bg-brandDark text-white font-semibold text-sm px-5 py-3 rounded-lg transition">
-    Quero minha agenda cheia →
-  </a>
+<header class="border-b border-slate-100">
+  <div class="max-w-6xl mx-auto px-5 py-5 flex items-center justify-between">
+    <a href="#"><img src="assets/img/Logo_S3T.jpeg" alt="Santos³ Tecnologia" class="h-16 md:h-20"></a>
+    <a href="#contato" class="hidden sm:inline-flex items-center gap-2 bg-brand hover:bg-brandDark text-white font-semibold text-sm px-5 py-3 rounded-lg transition">
+      Agendar demonstração
+    </a>
+  </div>
 </header>
+
 
 <!-- ========== HERO ========== -->
 <section class="max-w-6xl mx-auto px-5 py-10 grid lg:grid-cols-2 gap-10 items-center">
   <div>
     <p class="text-xs font-semibold text-brand uppercase tracking-wide">Um novo padrão no atendimento</p>
     <h1 class="mt-3 text-4xl md:text-5xl font-bold text-navy leading-tight">Sua agenda sempre cheia e o fim dos horários ociosos.</h1>
-    <p class="mt-5 text-lg leading-relaxed">Criamos o Assistente Virtual que vai revolucionar o atendimento para clínicas médicas, uma solução muito eficiente, que absorve as demandas repetitivas de agendamento no seu WhatsApp. Sua clínica não perde mais nenhuma oportunidade de agendar consultas, e sua secretária ganha tempo para ser a protagonista nos detalhes do acolhimento humano.</p>
-<!--
-    <div class="mt-7 flex flex-col sm:flex-row gap-3">
-      <a href="#contato" class="text-center bg-brand hover:bg-brandDark text-white font-semibold px-6 py-4 rounded-lg transition">Começar teste grátis →</a>
-      <a href="#video" class="text-center border border-slate-200 hover:border-brand text-navy font-semibold px-6 py-4 rounded-lg transition">Veja na prática ›</a>
-    </div>
-    <p class="mt-5 text-sm">🛡️ Privacidade em primeiro lugar. Sua clínica no centro.</p>
--->
+    <p class="mt-5 text-lg leading-relaxed">Criamos um Assistente Virtual que atua no seu WhatsApp, ele agenda consultas, confirma e recupera horários ociosos 24h por dia. Sua secretária para de responder mensagens repetitivas e ganha tempo para focar em quem está na recepção.</p>
+
 </div>
   <div id="video" class="bg-soft rounded-3xl p-6 md:p-8">
     <p class="text-xs font-semibold text-brand uppercase">Veja na prática</p>
@@ -57,45 +59,139 @@
 </section>
 
 <!-- ========== COMPARATIVO ========== -->
+
 <section class="max-w-6xl mx-auto px-5 py-16">
-  <h2 class="text-3xl md:text-4xl font-bold text-navy text-center">Transforme o seu WhatsApp em uma mina de dinheiro</h2>
+  <h2 class="text-3xl md:text-4xl font-bold text-navy text-center">O que muda com o assistente atendendo no WhatsApp</h2>
+  <p class="mt-4 text-lg text-center max-w-2xl mx-auto">Veja onde sua clínica perde faturamento hoje e como o assistente resolve cada ponto.</p>
 
-  <!-- OPCIONAL: versão infográfico
-  <div class="mt-10 grid md:grid-cols-2 gap-6">
-    <img src="assets/img/manual.png" alt="Atendimento manual" class="rounded-xl">
-    <img src="assets/img/assistente.png" alt="Com Assistente Virtual" class="rounded-xl">
-  </div> -->
-
-  <div class="mt-10 grid md:grid-cols-2 gap-6">
-    <div class="bg-rose rounded-2xl p-6 md:p-8 space-y-6">
-      <h3 class="text-2xl md:text-3xl font-bold text-navy text-center">Atendimento manual</h3>
-      <div><p class="font-semibold">📉 Perda de Pacientes (noites e finais de semana)</p><p>Cerca de 20% das buscas por agendamento ocorrem fora do horário comercial. Sem uma resposta imediata, o paciente não espera e busca outras opções.</p></div>
-      <div><p class="font-semibold">⏳ A fila de espera invisível</p><p>Durante o horário de pico, a secretária precisa focar no presencial. Quem manda mensagem no WhatsApp espera horas por uma resposta. Na internet, a paciência dura poucos minutos.</p></div>
-      <div><p class="font-semibold">🪑 As Cadeiras Vazias (No-Show)</p><p>Um paciente desmarca em cima da hora, a recepção está lotada e não dá tempo de acionar a fila de espera. O médico fica ocioso e a clínica perde receita.</p></div>
-      <div><p class="font-semibold">🤖 Sobrecarga e Desperdício de Talento</p><p>Sua secretária gasta horas como um "robô" de copiar e colar mensagens, quando deveria focar em aprovações, convênios e em quem já está na sala de espera.</p></div>
-    </div>
-    <div class="bg-soft rounded-2xl p-6 md:p-8 space-y-6">
-      <h3 class="text-2xl md:text-3xl font-bold text-navy text-center">Com Assistente Virtual</h3>
-      <div><p class="font-semibold">🌙 Atendimento 24/7</p><p>Um concierge incansável que responde e agenda consultas de madrugada, domingos e feriados. Sua clínica nunca fecha.</p></div>
-      <div><p class="font-semibold">⚡ Conversão Imediata</p><p>Respostas em menos de 1 minuto. O paciente agenda antes mesmo de pensar em outra opção.</p></div>
-      <div><p class="font-semibold">🛡️ Agenda Blindada</p><p>Se houver um cancelamento, o sistema identifica a lacuna e avisa imediatamente a secretária para ofertar a vaga aos pacientes da fila de espera.</p></div>
-      <div><p class="font-semibold">💎 Alta Performance da Secretária</p><p>Liberada do trabalho braçal, ela foca no que traz retorno: aprovação de cirurgias, gestão e acolhimento VIP. O assistente absorve cerca de 80% da demanda repetitiva, deixando à equipe os 20% que exigem atenção humana.</p></div>
-    </div>
+  <!-- Cabeçalho (desktop) -->
+  <div class="mt-10 hidden md:grid md:grid-cols-[180px_1fr_1fr] gap-6">
+    <h3 class="text-lg font-bold text-navy/60 uppercase tracking-wide self-end"></h3>
+    <h3 class="text-2xl font-bold text-navy text-center">❌ Sem Assistente</h3>
+    <h3 class="text-2xl font-bold text-brand text-center">✅ Com o Assistente</h3>
   </div>
-</section>
 
-<!-- ========== RALO OU MINA (sugestão: remover na consolidação) ========== -->
-<section class="max-w-6xl mx-auto px-5 py-16">
-  <p class="text-xs font-semibold text-brand uppercase">Os problemas ocultos do atendimento manual</p>
-  <h2 class="mt-2 text-3xl md:text-4xl font-bold text-navy">Seu WhatsApp é um ralo ou mina de dinheiro?</h2>
-  <p class="mt-4">Mensagens perdidas e horas de espera custam consultas.</p>
-  <div class="mt-6 space-y-4 leading-relaxed">
-    <p>📉 <b>O paciente da noite e final de semana:</b> de acordo com nossos clientes, 15% a 20% dos pacientes agendam fora do horário comercial. Um atendimento que sempre responde garante esses pacientes, que antes iriam para a concorrência.</p>
-    <p>⏳ <b>A fila de espera invisível:</b> no horário de pico, quem manda mensagem espera horas. Na internet, a paciência dura poucos minutos.</p>
-    <p>🪑 <b>As cadeiras vazias (No-Show):</b> um paciente desmarca em cima da hora e não dá tempo de acionar a fila de espera. O médico fica ocioso e a clínica perde dinheiro.</p>
-    <p>🤖 <b>O desperdício de talento:</b> sua secretária atua como "robô de copiar e colar" quando deveria encantar quem já está na sala de espera.</p>
+  <div class="mt-6 space-y-4">
+
+    <!-- 1. Disponibilidade -->
+    <div class="grid md:grid-cols-[180px_1fr_1fr] gap-3 md:gap-6">
+      <div class="flex items-center font-bold text-navy text-lg">🌙 Disponibilidade</div>
+      <div class="bg-rose card-hover">
+        <p class="font-semibold text-navy">❌ Seu concorrente agenda enquanto você dorme</p>
+        <p class="mt-1">São 22h e o paciente manda mensagem, mas fica sem resposta. Quando sua secretária responde, ele já desistiu de esperar.</p>
+      </div>
+      <div class="bg-mint card-hover">
+        <p class="font-semibold text-navy">✅ Sua clínica agenda enquanto você dorme</p>
+        <p class="mt-1">São 22h e o paciente manda mensagem.<br>Em 1 minuto a consulta está marcada e confirmada.</p>
+      </div>
+    </div>
+
+    <!-- 2. Tempo de resposta -->
+    <div class="grid md:grid-cols-[180px_1fr_1fr] gap-3 md:gap-6">
+      <div class="flex items-center font-bold text-navy text-lg">⚡ Tempo de Resposta</div>
+      <div class="bg-rose card-hover">
+        <p class="font-semibold text-navy">❌ Seu paciente espera e pode desistir</p>
+        <p class="mt-1">São 10h e o paciente manda mensagem no WhatsApp. Sua secretária está no telefone e na recepção. Quando ela consegue responder, ele já pode ter marcado em outra clínica.</p>
+      </div>
+      <div class="bg-mint card-hover">
+        <p class="font-semibold text-navy">✅ Seu paciente é atendido na hora</p>
+        <p class="mt-1">São 10h e o paciente manda mensagem no WhatsApp. Em segundos, ele recebe resposta, mesmo com dezenas de conversas ao mesmo tempo.</p>
+      </div>
+    </div>
+
+    <!-- 3. Faltas -->
+    <div class="grid md:grid-cols-[180px_1fr_1fr] gap-3 md:gap-6">
+      <div class="flex items-center font-bold text-navy text-lg">📅 Faltas (no-show)</div>
+      <div class="bg-rose card-hover">
+        <p class="font-semibold text-navy">❌ Seu paciente marca e esquece</p>
+        <p class="mt-1">Sem lembrete, a consulta marcada pode virar um horário vazio.</p>
+      </div>
+      <div class="bg-mint card-hover">
+        <p class="font-semibold text-navy">✅ Lembrete e confirmação automática</p>
+        <p class="mt-1">Lembrete e pedido de confirmação 24h antes da consulta sempre ajudam a reduzir as faltas.</p>
+      </div>
+    </div>
+
+    <!-- 4. Recepção -->
+    <div class="grid md:grid-cols-[180px_1fr_1fr] gap-3 md:gap-6">
+      <div class="flex items-center font-bold text-navy text-lg">💎 Recepção</div>
+      <div class="bg-rose card-hover">
+        <p class="font-semibold text-navy">❌ Secretária presa no WhatsApp</p>
+        <p class="mt-1">Horas respondendo as mesmas perguntas, enquanto convênios, autorizações e a sala de espera ficam para depois.</p>
+      </div>
+      <div class="bg-mint card-hover">
+        <p class="font-semibold text-navy">✅ Secretária livre para o que importa</p>
+        <p class="mt-1">O assistente assume 80% das mensagens repetitivas no WhatsApp, e a secretária volta ao que exige atenção humana: convênios, autorizações e sala de espera*. <br>*Média observada nas clínicas que usam o nosso assistente.</p>
+      </div>
+    </div>
+
+    <!-- Ver mais -->
+    <details class="group">
+      <summary class="list-none cursor-pointer text-center font-semibold text-brand py-3 hover:underline">
+        <span class="group-open:hidden">Ver mais ▾</span>
+        <span class="hidden group-open:inline">Ver menos ▴</span>
+      </summary>
+
+      <div class="mt-4 space-y-4">
+
+        <!-- 5. Cancelamentos -->
+        <div class="grid md:grid-cols-[180px_1fr_1fr] gap-3 md:gap-6">
+          <div class="flex items-center font-bold text-navy text-lg">🪑 Cancelamentos de última hora</div>
+          <div class="bg-rose card-hover">
+            <p class="font-semibold text-navy">❌ Horários ociosos</p>
+            <p class="mt-1">O cancelamento chega no meio de dezenas de mensagens e a secretária não percebe a tempo de agir. O horário fica vazio e a clínica perde receita.</p>
+          </div>
+          <div class="bg-mint card-hover">
+            <p class="font-semibold text-navy">✅ Encaixes estratégicos</p>
+            <p class="mt-1">No cancelamento de última hora, o assistente avisa a secretária imediatamente. O encaixe deixa de ser favor ao paciente e vira receita para o consultório.</p>
+          </div>
+        </div>
+
+        <!-- 6. Remarcações -->
+        <div class="grid md:grid-cols-[180px_1fr_1fr] gap-3 md:gap-6">
+          <div class="flex items-center font-bold text-navy text-lg">🔁 Remarcações</div>
+          <div class="bg-rose card-hover">
+            <p class="font-semibold text-navy">❌ Retrabalho constante</p>
+            <p class="mt-1">Cada remarcação exige ligação, troca de mensagens e ajuste manual, e o horário fica vago até alguém perceber.</p>
+          </div>
+          <div class="bg-mint card-hover">
+            <p class="font-semibold text-navy">✅ Remarcação sem esforço</p>
+            <p class="mt-1">O paciente remarca sozinho, e o horário é liberado imediatamente para o próximo paciente que entrar em contato.</p>
+          </div>
+        </div>
+
+        <!-- 7. Dúvidas -->
+
+        <div class="grid md:grid-cols-[180px_1fr_1fr] gap-3 md:gap-6">
+          <div class="flex items-center font-bold text-navy text-lg">💬 Dúvidas frequentes</div>
+          <div class="bg-rose card-hover">
+            <p class="font-semibold text-navy">❌ Perguntas repetitivas</p>
+            <p class="mt-1">A secretária explica valores, convênios e endereço inúmeras vezes por dia.</p>
+          </div>
+          <div class="bg-mint card-hover">
+            <p class="font-semibold text-navy">✅ Respostas padronizadas</p>
+            <p class="mt-1">Informações respondidas na hora, sem ocupar a secretária.</p>
+          </div>
+        </div>
+
+        <!-- 8. Gestão -->
+        <div class="grid md:grid-cols-[180px_1fr_1fr] gap-3 md:gap-6">
+          <div class="flex items-center font-bold text-navy text-lg">📊 Gestão</div>
+          <div class="bg-rose card-hover">
+            <p class="font-semibold text-navy">❌ Pouca visibilidade</p>
+            <p class="mt-1">Sem números claros sobre agendamentos, cancelamentos e confirmações.</p>
+          </div>
+          <div class="bg-mint card-hover">
+            <p class="font-semibold text-navy">✅ Dados na mão</p>
+            <p class="mt-1">Relatório mensal com agendamentos, confirmações e comparativo com o mês anterior.</p>
+          </div>
+        </div>
+
+
+      </div>
+    </details>
+
   </div>
-  <div class="mt-10 text-center"><a href="#contato" class="inline-block bg-brand hover:bg-brandDark text-white font-semibold px-8 py-4 rounded-lg transition">Reverta isso agora →</a></div>
 </section>
 
 <!-- ========== DADOS ========== -->
