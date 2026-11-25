@@ -15,14 +15,18 @@
   </style>
   <script>
     tailwind.config = {
-      theme: { extend: {
+      theme: {
+        extend: {
         fontFamily: { sans: ['Inter', 'sans-serif'] },
-        colors: {
-          brand: '#1A7F6E', brandDark: '#14655A',
-          navy: '#0F1F38', mint: '#E0F3EC',
-          soft: '#F2F5F4', rose: '#F5E3DF'
+          colors: {
+            brand: '#1A7F6E', brandDark: '#14655A',
+            navy: '#0F1F38', mint: '#E0F3EC',
+            'brand-dark': '#176b57', // hover
+            accent: '#1e5a8c',      // azul do logo, para detalhes
+            soft: '#F2F5F4', rose: '#F5E3DF'
+          }
         }
-      }}
+      }
     }
   </script>
     <style>
@@ -57,19 +61,122 @@
 
 <!-- ========== HEADER ========== -->
 <header class="sticky top-0 z-40 bg-navy/95 backdrop-blur shadow-md">
-  <div class="max-w-7xl mx-auto px-5 h-20 flex items-center justify-between gap-6">
+  <div class="max-w-7xl mx-auto px-5 h-20 flex items-center justify-between gap-4">
 
     <!-- Logo -->
-    <a href="#"><img src="assets/img/Logo_S3T.jpeg" alt="Santos³ Tecnologia" class="h-16 md:h-20"></a>
+    <a href="#"><img src="assets/img/Logo_S3T.jpeg" alt="Santos³ Tecnologia" class="h-14 bg-white rounded-lg p-0"></a>
 
-    <!-- Menu -->
+    <!-- Menu desktop -->
     <nav class="hidden lg:flex items-center gap-7 text-white/90 font-medium">
       <a href="#como-funciona" class="hover:text-white">Como funciona</a>
       <a href="#beneficios" class="hover:text-white">Benefícios</a>
       <a href="#faq" class="hover:text-white">Dúvidas</a>
     </nav>
 
-    <!-- Painel rápido (estilo Itaú) -->
+    <!-- Painel rápido + CTA (desktop) -->
+    <div class="hidden lg:flex items-center gap-4">
+      <form class="quick-form flex items-center bg-white rounded-xl pl-3 pr-1 py-1 shadow-sm">
+        <span class="flex items-center gap-2 pr-3 border-r border-gray-200 text-xs font-semibold text-green-600 whitespace-nowrap">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500"></span>
+          </span>
+          Online 24h
+        </span>
+        <input type="tel" placeholder="Seu WhatsApp" autocomplete="off" data-lpignore="true" data-1p-ignore
+               class="w-36 px-3 text-sm text-navy outline-none placeholder:text-gray-400">
+        <button type="submit" class="bg-brand hover:bg-brand-dark text-white font-semibold text-sm px-4 py-2 rounded-lg transition">
+          Testar grátis
+        </button>
+      </form>
+
+      <a href="#contato"
+         class="hidden xl:inline-flex border border-white/70 text-white font-semibold px-5 py-2.5 rounded-xl hover:bg-white hover:text-navy transition">
+        Agendar demonstração
+      </a>
+    </div>
+
+    <!-- Botão hambúrguer (mobile/tablet) -->
+    <button id="menu-btn" class="lg:hidden p-2 text-white" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg id="icon-open" class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+      <svg id="icon-close" class="w-7 h-7 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M6 6l12 12M18 6L6 18"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Menu mobile -->
+  <div id="mobile-menu" class="lg:hidden hidden border-t border-white/10 bg-navy">
+    <nav class="max-w-7xl mx-auto px-5 py-4 flex flex-col gap-1 text-white/90 font-medium">
+      <a href="#como-funciona" class="py-3 hover:text-white">Como funciona</a>
+      <a href="#beneficios" class="py-3 hover:text-white">Benefícios</a>
+      <a href="#faq" class="py-3 hover:text-white">Dúvidas</a>
+
+      <form class="quick-form mt-3 flex items-center bg-white rounded-xl pl-3 pr-1 py-1">
+        <input type="tel" placeholder="Seu WhatsApp" autocomplete="off" data-lpignore="true" data-1p-ignore
+               class="flex-1 min-w-0 px-1 text-sm text-navy outline-none placeholder:text-gray-400">
+        <button type="submit" class="bg-brand hover:bg-brand-dark text-white font-semibold text-sm px-4 py-2 rounded-lg transition">
+          Testar grátis
+        </button>
+      </form>
+
+      <a href="#contato"
+         class="mt-3 text-center border border-white/70 text-white font-semibold px-5 py-2.5 rounded-xl hover:bg-white hover:text-navy transition">
+        Agendar demonstração
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Formulários (desktop e mobile)
+  document.querySelectorAll('.quick-form').forEach(form => {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const tel = form.querySelector('input[type="tel"]').value.trim();
+      const msg = encodeURIComponent(`Olá! Quero testar o Assistente Virtual. Meu WhatsApp: ${tel}`);
+      window.open(`https://wa.me/555196975554?text=${msg}`, '_blank');
+    });
+  });
+
+  // Menu hambúrguer
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  const toggleMenu = (open) => {
+    menu.classList.toggle('hidden', !open);
+    iconOpen.classList.toggle('hidden', open);
+    iconClose.classList.toggle('hidden', !open);
+    btn.setAttribute('aria-expanded', open);
+  };
+
+  btn.addEventListener('click', () => toggleMenu(menu.classList.contains('hidden')));
+
+  // Fecha ao clicar em um link
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+</script>
+
+
+
+<!--
+<header class="sticky top-0 z-40 bg-navy/95 backdrop-blur shadow-md">
+  <div class="max-w-7xl mx-auto px-5 h-20 flex items-center justify-between gap-4">
+
+     Logo 
+    <a href="#"><img src="assets/img/Logo_S3T.jpeg" alt="Santos³ Tecnologia" class="h-14 bg-white rounded-lg p-0"></a>
+
+     Menu 
+    <nav class="hidden lg:flex items-center gap-7 text-white/90 font-medium">
+      <a href="#como-funciona" class="hover:text-white">Como funciona</a>
+      <a href="#beneficios" class="hover:text-white">Benefícios</a>
+      <a href="#faq" class="hover:text-white">Dúvidas</a>
+    </nav>
+
+     Painel rápido 
     <form id="quick-form" class="hidden md:flex items-center bg-white rounded-xl pl-3 pr-1 py-1 shadow-sm">
       <span class="flex items-center gap-2 pr-3 border-r border-gray-200 text-xs font-semibold text-green-600 whitespace-nowrap">
         <span class="relative flex h-2.5 w-2.5">
@@ -80,15 +187,15 @@
       </span>
       <input id="quick-phone" type="tel" placeholder="Seu WhatsApp"
              class="w-36 px-3 text-sm text-navy outline-none placeholder:text-gray-400">
-      <button type="submit" class="bg-brand text-white text-sm font-semibold px-4 py-2 rounded-lg hover:opacity-90">
+      <button type="submit" class="bg-brand hover:bg-brand-dark text-white font-semibold text-sm px-4 py-2 rounded-lg transition">
         Testar grátis
       </button>
     </form>
 
-    <!-- CTA secundário -->
+     CTA secundário 
     <a href="#contato"
        class="hidden xl:inline-flex border border-white/70 text-white font-semibold px-5 py-2.5 rounded-xl hover:bg-white hover:text-navy transition">
-      Quero saber mais
+      Agendar demonstração
     </a>
   </div>
 </header>
@@ -101,6 +208,7 @@
     window.open(`https://wa.me/555196975554?text=${msg}`, '_blank'); // troque pelo seu número
   });
 </script>
+-->
 <!--
 <header class="border-b border-slate-100">
   <div class="max-w-6xl mx-auto px-5 py-5 flex items-center justify-between">
@@ -119,8 +227,8 @@
     <img src="img/slide1.jpg" alt="" class="absolute inset-0 w-full h-full object-cover">
     <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/70 to-transparent"></div>
     <div class="relative max-w-7xl mx-auto px-5 h-full flex flex-col justify-center text-white max-w-xl">
-      <h2 class="text-4xl font-bold leading-tight">Sua agenda sempre cheia, 24h por dia.</h2>
-      <p class="mt-4 text-lg text-white/90">O assistente agenda consultas pelo WhatsApp, até de madrugada.</p>
+      <h1 class="text-4xl font-bold leading-tight">Sua agenda sempre cheia, atendendo 24h por dia.</h1>
+      <p class="mt-4 text-lg text-white/90">O assistente agenda consultas pelo WhatsApp, até nas férias.</p>
       <a href="#contato" class="mt-6 self-start border border-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-navy transition">Saiba mais</a>
     </div>
   </div>
@@ -131,7 +239,7 @@
     <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/70 to-transparent"></div>
     <div class="relative max-w-7xl mx-auto px-5 h-full flex flex-col justify-center text-white max-w-xl">
       <h2 class="text-4xl font-bold leading-tight">Menos faltas, mais consultas.</h2>
-      <p class="mt-4 text-lg text-white/90">Confirmação automática e recuperação de horários cancelados.</p>
+      <p class="mt-4 text-lg text-white/90">Envio de lembretes que evitam horários vagos.</p>
       <a href="#beneficios" class="mt-6 self-start border border-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-navy transition">Saiba mais</a>
     </div>
   </div>
@@ -141,7 +249,7 @@
     <img src="img/slide3.jpg" alt="" class="absolute inset-0 w-full h-full object-cover">
     <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/70 to-transparent"></div>
     <div class="relative max-w-7xl mx-auto px-5 h-full flex flex-col justify-center text-white max-w-xl">
-      <h2 class="text-4xl font-bold leading-tight">Sua secretária livre para o que importa.</h2>
+      <h2 class="text-4xl font-bold leading-tight">Sua secretária livre para o que exige atenção humana.</h2>
       <p class="mt-4 text-lg text-white/90">Chega de responder as mesmas mensagens o dia todo.</p>
       <a href="#como-funciona" class="mt-6 self-start border border-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-navy transition">Saiba mais</a>
     </div>
@@ -202,6 +310,71 @@
   mostrar(0);
   reiniciar();
 </script>
+
+
+<section id="recursos" class="max-w-7xl mx-auto px-5 py-16">
+  <h2 class="text-2xl font-bold text-navy mb-8">Tudo o que sua clínica precisa o assistente faz por você</h2>
+
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+
+    <!-- Card -->
+    <a href="#agendamento" class="group p-5 rounded-xl border border-gray-200 bg-white
+       hover:border-brand hover:bg-gray-50 hover:-translate-y-1 hover:shadow-md transition duration-200">
+      <svg class="w-7 h-7 text-navy group-hover:text-brand transition" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/>
+      </svg>
+      <h3 class="mt-4 font-semibold text-navy group-hover:text-brand">Agendamento</h3>
+      <p class="text-sm text-gray-500 mt-1">Marca consultas pelo WhatsApp</p>
+    </a>
+
+    <a href="#lembretes" class="group p-5 rounded-xl border border-gray-200 bg-white
+       hover:border-brand hover:bg-gray-50 hover:-translate-y-1 hover:shadow-md transition duration-200">
+      <svg class="w-7 h-7 text-navy group-hover:text-brand transition" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path d="M6 8a6 6 0 1112 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/>
+      </svg>
+      <h3 class="mt-4 font-semibold text-navy group-hover:text-brand">Lembretes</h3>
+      <p class="text-sm text-gray-500 mt-1">Envio de lembrete 24hs antes</p>
+    </a>
+
+    <a href="#confirmacao" class="group p-5 rounded-xl border border-gray-200 bg-white
+       hover:border-brand hover:bg-gray-50 hover:-translate-y-1 hover:shadow-md transition duration-200">
+      <svg class="w-7 h-7 text-navy group-hover:text-brand transition" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/>
+      </svg>
+      <h3 class="mt-4 font-semibold text-navy group-hover:text-brand">Confirmação</h3>
+      <p class="text-sm text-gray-500 mt-1">Reduz faltas automaticamente</p>
+    </a>
+
+    <a href="#relatorios" class="group p-5 rounded-xl border border-gray-200 bg-white
+       hover:border-brand hover:bg-gray-50 hover:-translate-y-1 hover:shadow-md transition duration-200">
+      <svg class="w-7 h-7 text-navy group-hover:text-brand transition" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>
+      </svg>
+      <h3 class="mt-4 font-semibold text-navy group-hover:text-brand">Relatórios</h3>
+      <p class="text-sm text-gray-500 mt-1">Acompanhe o ritmo da sua clínica</p>
+    </a>
+
+    <a href="#integracoes" class="group p-5 rounded-xl border border-gray-200 bg-white
+       hover:border-brand hover:bg-gray-50 hover:-translate-y-1 hover:shadow-md transition duration-200">
+      <svg class="w-7 h-7 text-navy group-hover:text-brand transition" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/>
+      </svg>
+      <h3 class="mt-4 font-semibold text-navy group-hover:text-brand">Integrações</h3>
+      <p class="text-sm text-gray-500 mt-1">Conecta ao seu sistema</p>
+    </a>
+
+    <a href="#contato" class="group p-5 rounded-xl border border-gray-200 bg-white
+       hover:border-brand hover:bg-gray-50 hover:-translate-y-1 hover:shadow-md transition duration-200">
+      <svg class="w-7 h-7 text-navy group-hover:text-brand transition" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 114 2c-1 .6-1.5 1.2-1.5 2M12 17h.01"/>
+      </svg>
+      <h3 class="mt-4 font-semibold text-navy group-hover:text-brand">Suporte</h3>
+      <p class="text-sm text-gray-500 mt-1">Nossa equipe pronta para ajudar</p>
+    </a>
+
+  </div>
+</section>
+
 
 
 <!-- ========== HERO ========== -->
@@ -615,7 +788,7 @@
   <!-- Balão -->
   <div id="wa-bubble"
        class="hidden relative bg-white text-gray-600 text-sm rounded-xl shadow-lg pl-4 pr-8 py-3 max-w-[220px] opacity-0 translate-y-2 transition-all duration-300">
-    Fale conosco para testar o assistente
+    Fale conosco e teste o assistente
     <button id="wa-bubble-close" aria-label="Fechar"
             class="absolute top-1 right-2 text-gray-500 hover:text-gray-800 text-lg leading-none">&times;</button>
   </div>
