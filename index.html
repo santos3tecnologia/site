@@ -166,7 +166,11 @@
 
   <!-- Slide 1 -->
   <div class="slide absolute inset-0 transition-opacity duration-700 opacity-100">
-    <img src="assets/img/slide1.png" alt="" class="absolute inset-0 w-full h-full object-cover object-[100%_0%]">
+    <picture>
+      <source media="(max-width: 767px)" srcset="assets/img/slide1.png">
+      <img src="assets/img/slide1.png" alt="" class="absolute inset-0 w-full h-full object-cover object-[50%_50%]">
+    </picture>
+
     <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/70 to-transparent"></div>
     <div class="relative max-w-7xl mx-auto px-5 h-full flex items-center">
       <div class="max-w-xl text-white text-left flex flex-col">
