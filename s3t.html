@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santos³ Tecnologia | Assistente Virtual para Clínicas</title>
+<meta name="description" content="Assistente virtual no WhatsApp que agenda, confirma e recupera consultas 24h. Teste 30 dias grátis.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0f1f3a; --navy-2:#16294a; --green:#1a7f6e; --green-l:#e6f4f1;
+  --red-l:#f8e4e1; --gray:#f3f5f4; --text:#1c2733; --muted:#5b6672; --line:#e3e7ea;
+  --radius:16px; --max:1140px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,sans-serif;color:var(--text);line-height:1.6;font-size:16px}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{max-width:var(--max);margin:0 auto;padding:0 24px}
+section{padding:96px 0}
+.bg-gray{background:var(--gray)}
+.bg-navy{background:var(--navy);color:#fff}
+.bg-navy p{color:#c9d3e0}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+.bg-navy .eyebrow{color:#5fd1b9}
+h1{font-size:clamp(34px,5vw,54px);line-height:1.1;font-weight:800}
+h2{font-size:clamp(28px,3.6vw,40px);line-height:1.2;font-weight:800;margin-bottom:16px}
+h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.lead{font-size:18px;color:var(--muted);max-width:720px}
+.center{text-align:center}.center .lead{margin:0 auto}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 28px;border-radius:10px;font-weight:700;transition:.2s;cursor:pointer;border:2px solid transparent}
+.btn-primary{background:var(--green);color:#fff}
+.btn-primary:hover{background:#146658}
+.btn-ghost{border-color:#fff;color:#fff}
+.btn-ghost:hover{background:#fff;color:var(--navy)}
+.grid{display:grid;gap:24px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+.icon{width:44px;height:44px;border-radius:10px;background:var(--green-l);color:var(--green);display:grid;place-items:center;font-weight:800;margin-bottom:16px}
+.icon svg{width:22px;height:22px}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:50;background:var(--navy)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px}
+.logo{background:#fff;border-radius:8px;padding:6px 10px;font-weight:800;color:var(--navy)}
+.nav ul{display:flex;gap:32px;list-style:none}
+.nav ul a{color:#dfe6ef;font-weight:500}
+.nav ul a:hover{color:#fff}
+.nav .btn{padding:10px 20px}
+
+/* HERO */
+.hero{background:linear-gradient(90deg,var(--navy) 45%,rgba(15,31,58,.6)),url('hero.jpg') center/cover;color:#fff;padding:110px 0 120px}
+.hero p{font-size:19px;color:#d4dce8;margin:20px 0 36px;max-width:560px}
+.hero .actions{display:flex;gap:16px;flex-wrap:wrap}
+.trust{background:var(--navy-2);color:#cfd8e4;padding:18px 0;font-size:14px}
+.trust .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.trust span::before{content:"✓ ";color:#5fd1b9;font-weight:800}
+
+/* COMPARATIVO */
+.compare{margin-top:48px;display:grid;grid-template-columns:180px 1fr 1fr;gap:16px 24px;align-items:stretch}
+.compare .head{font-weight:800;font-size:20px;text-align:center}
+.compare .label{font-weight:700;display:flex;align-items:center}
+.bad,.good{border-radius:var(--radius);padding:22px}
+.bad{background:var(--red-l)}.good{background:var(--green-l)}
+.bad strong,.good strong{display:block;margin-bottom:4px}
+.bad p,.good p{color:var(--muted);font-size:15px}
+
+/* COMO FUNCIONA */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.steps{display:flex;flex-direction:column;gap:28px;margin-top:32px}
+.step{display:flex;gap:18px}
+.step .num{flex:0 0 44px;height:44px;border-radius:10px;background:var(--green-l);color:var(--green);font-weight:800;display:grid;place-items:center}
+.step p{color:var(--muted);font-size:15px}
+.video{aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;background:#000}
+.video iframe{width:100%;height:100%;border:0}
+
+/* RELATÓRIO */
+.report{background:#fff;color:var(--text);border-radius:var(--radius);padding:32px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.report h4{font-size:16px;margin-bottom:20px}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.kpi{background:var(--gray);border-radius:12px;padding:16px}
+.kpi b{font-size:28px;color:var(--green);display:block;line-height:1.1}
+.kpi span{font-size:13px;color:var(--muted)}
+.report small{display:block;margin-top:16px;color:var(--muted);font-size:12px}
+
+/* PILARES */
+.pillar .tag{display:inline-block;background:var(--green-l);color:var(--green);font-size:13px;font-weight:700;padding:6px 14px;border-radius:8px;margin-bottom:20px}
+.pillar li{list-style:none;margin-bottom:16px}
+.pillar li b{display:block}
+.pillar li span{color:var(--muted);font-size:15px}
+
+/* OBJEÇÃO */
+.quote{max-width:820px}
+.quote p{font-size:18px;color:var(--muted);margin-bottom:16px}
+.quote strong{color:var(--text)}
+
+/* ROI */
+.calc{background:#fff;border-radius:var(--radius);padding:32px;border:1px solid var(--line)}
+.calc label{display:block;font-size:14px;font-weight:600;margin:14px 0 6px}
+.calc input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font:inherit}
+.result{margin-top:24px;background:var(--green-l);border-radius:12px;padding:20px}
+.result b{font-size:30px;color:var(--green);display:block}
+
+/* DEPOIMENTOS */
+.testi p{font-style:italic;color:var(--muted);margin-bottom:20px}
+.who{display:flex;gap:12px;align-items:center}
+.avatar{width:44px;height:44px;border-radius:50%;background:var(--line)}
+.who span{font-size:14px;color:var(--muted);display:block}
+
+/* OFERTA */
+.offer{background:var(--navy);color:#fff;border-radius:24px;padding:56px}
+.offer .grid{margin:36px 0}
+.offer .item{display:flex;gap:14px}
+.offer .item .num{flex:0 0 36px;height:36px;border-radius:8px;background:rgba(95,209,185,.15);color:#5fd1b9;display:grid;place-items:center;font-weight:800;font-size:14px}
+.offer .item p{color:#c9d3e0;font-size:15px}
+
+/* FAQ */
+.faq{max-width:820px;margin:40px auto 0}
+details{border-bottom:1px solid var(--line);padding:20px 0}
+summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between}
+summary::after{content:"+";font-size:22px;color:var(--green)}
+details[open] summary::after{content:"–"}
+details p{color:var(--muted);margin-top:10px}
+
+/* FOOTER */
+footer{background:var(--navy);color:#aab6c6;padding:48px 0;font-size:14px}
+footer .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+footer a:hover{color:#fff}
+
+/* WHATSAPP */
+.wa{position:fixed;right:24px;bottom:24px;width:60px;height:60px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:60}
+.wa svg{width:32px;fill:#fff}
+
+/* RESPONSIVO */
+@media(max-width:900px){
+  section{padding:64px 0}
+  .nav ul{display:none}
+  .g2,.g3,.split{grid-template-columns:1fr}
+  .compare{grid-template-columns:1fr}
+  .compare .head,.compare .label{display:none}
+  .compare .bad::before{content:attr(data-l);display:block;font-size:12px;font-weight:800;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .compare .good{margin-bottom:16px}
+  .offer{padding:32px 24px}
+  .trust .container{justify-content:center}
+}
+</style>
+</head>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const $ = id => document.getElementById(id);
+  const fmt = v => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+
+  const calc = () => {
+    const consultas = parseFloat($('c1').value) || 0;
+    const faltas = (parseFloat($('c2').value) || 0) / 100;
+    const valor = parseFloat($('c3').value) || 0;
+    const perdido = consultas * faltas * valor;
+    $('res').textContent = fmt(perdido);
+    $('res2').textContent = fmt(perdido / 2);
+  };
+
+  ['c1', 'c2', 'c3'].forEach(id => $(id).addEventListener('input', calc));
+  calc();
+});
+</script>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="container nav">
+    <a href="#" class="logo">SANTOS³</a>
+    <ul>
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#resultados">Resultados</a></li>
+      <li><a href="#oferta">Planos</a></li>
+      <li><a href="#faq">Dúvidas</a></li>
+    </ul>
+    <a href="#oferta" class="btn btn-ghost">Testar grátis</a>
+  </div>
+</header>
+
+<!-- 1. HERO -->
+<section class="hero">
+  <div class="container">
+    <p class="eyebrow">Assistente Virtual para clínicas e consultórios</p>
+    <h1>Sua agenda cheia,<br>mesmo com a recepção fechada.</h1>
+    <p>O Assistente agenda, confirma e recupera consultas pelo WhatsApp 24h por dia, enquanto sua secretária cuida de quem está na clínica.</p>
+    <div class="actions">
+      <a href="#oferta" class="btn btn-primary">Testar 30 dias grátis →</a>
+      <a href="#como-funciona" class="btn btn-ghost">▶ Ver como funciona</a>
+    </div>
+  </div>
+</section>
+
+<!-- 2. PROBLEMA x SOLUÇÃO -->
+<section>
+  <div class="container center">
+    <p class="eyebrow">Onde sua clínica perde faturamento</p>
+    <h2>Cada mensagem sem resposta é uma consulta perdida</h2>
+    <p class="lead">Veja o que muda no dia a dia da sua clínica.</p>
+  </div>
+  <div class="container compare">
+    <div></div><div class="head">❌ Sem o Assistente</div><div class="head">✅ Com o Assistente</div>
+
+    <div class="label">🌙 Fora do horário</div>
+    <div class="bad" data-l="Fora do horário"><strong>Mensagem das 22h sem resposta</strong><p>No dia seguinte, o paciente já marcou em outro lugar.</p></div>
+    <div class="good"><strong>Consulta marcada em 1 minuto</strong><p>O paciente agenda à noite, no fim de semana ou no feriado.</p></div>
+
+    <div class="label">⚡ Tempo de resposta</div>
+    <div class="bad" data-l="Tempo de resposta"><strong>O paciente espera e desiste</strong><p>A secretária está no telefone e no balcão ao mesmo tempo.</p></div>
+    <div class="good"><strong>Atendimento na hora</strong><p>Resposta em segundos, mesmo com dezenas de conversas simultâneas.</p></div>
+
+    <div class="label">📅 Faltas</div>
+    <div class="bad" data-l="Faltas"><strong>O paciente marca e esquece</strong><p>Sem lembrete, a consulta vira horário vazio.</p></div>
+    <div class="good"><strong>Lembrete 24h antes</strong><p>O paciente confirma, remarca ou cancela pelo próprio chat.</p></div>
+
+    <div class="label">💎 Recepção</div>
+    <div class="bad" data-l="Recepção"><strong>Secretária presa no WhatsApp</strong><p>Convênios, autorizações e sala de espera ficam para depois.</p></div>
+    <div class="good"><strong>Secretária livre para o que importa</strong><p>O repetitivo fica com o Assistente e o humano fica com ela.</p></div>
+  </div>
+</section>
+
+<!-- 3. COMO FUNCIONA -->
+<section id="como-funciona" class="bg-gray">
+  <div class="container split">
+    <div>
+      <p class="eyebrow">Como funciona</p>
+      <h2>Simples para o paciente. Automático para a clínica.</h2>
+      <div class="steps">
+        <div class="step"><div class="num">01</div><div><h3>O paciente chama no WhatsApp</h3><p>Ele conversa naturalmente, sem menus nem códigos.</p></div></div>
+        <div class="step"><div class="num">02</div><div><h3>O Assistente agenda na hora</h3><p>Consulta a agenda real e marca direto no Google Agenda.</p></div></div>
+        <div class="step"><div class="num">03</div><div><h3>Lembra, confirma e fideliza</h3><p>Lembrete 24h antes, recuperação de vagas e convite para o retorno.</p></div></div>
+      </div>
+    </div>
+    <div class="video">
+      <iframe src="https://www.youtube.com/embed/[ID_VIDEO]" title="Como funciona o Assistente" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- 4. FUNCIONALIDADES -->
+<section id="funcionalidades">
+  <div class="container">
+    <p class="eyebrow">O que o Assistente faz</p>
+    <h2>O maior aliado da sua secretária</h2>
+    <p class="lead">Ele absorve o trabalho repetitivo do WhatsApp para a sua equipe focar no atendimento presencial.</p>
+    <div class="grid g3" style="margin-top:48px">
+      <div class="card"><div class="icon">01</div><h3>Agendamento inteligente</h3><p>Entende o pedido do paciente e marca direto na agenda, em segundos.</p></div>
+      <div class="card"><div class="icon">02</div><h3>Lembretes e confirmações</h3><p>Disparo 24h antes e agenda atualizada em tempo real.</p></div>
+      <div class="card"><div class="icon">03</div><h3>Recuperação de agenda</h3><p>Oferece as vagas canceladas a quem quer antecipar a consulta.</p></div>
+      <div class="card"><div class="icon">04</div><h3>Fidelização pós-consulta</h3><p>Após o atendimento, oferece o agendamento do retorno.</p></div>
+      <div class="card"><div class="icon">05</div><h3>Sob medida para a clínica</h3><p>Respeita duração de consultas, bloqueios e regras de cada médico.</p></div>
+      <div class="card"><div class="icon">06</div><h3>Relatório mensal</h3><p>Um resumo executivo que mostra o retorno do investimento.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. RESULTADOS -->
+<section id="resultados" class="bg-navy">
+  <div class="container split">
+    <div>
+      <p class="eyebrow">Resultados que você acompanha</p>
+      <h2>Todo mês, a prova do retorno chega no seu WhatsApp</h2>
+      <p class="lead" style="color:#c9d3e0">O relatório mostra quantas consultas o Assistente marcou, quantas faltas evitou e quantas vagas recuperou. Sem achismo.</p>
+    </div>
+    <div class="report">
+      <h4>📊 Resumo Mensal · Consultório exemplo</h4>
+      <div class="kpis">
+        <div class="kpi"><b>131</b><span>consultas agendadas</span></div>
+        <div class="kpi"><b>26,7%</b><span>fora do horário comercial</span></div>
+        <div class="kpi"><b>70,5%</b><span>confirmaram pelo lembrete</span></div>
+        <div class="kpi"><b>13</b><span>vagas recuperadas em menos de 24h</span></div>
+      </div>
+      <small>Dados reais de um cliente, anonimizados. Contam apenas as ações do Assistente, sem as da secretária.</small>
+    </div>
+  </div>
+</section>
+
+<!-- 6. TRÊS PILARES -->
+<section>
+  <div class="container">
+    <div class="center">
+      <p class="eyebrow">O efeito Santos³</p>
+      <h2>Uma solução. Três lados ganham.</h2>
+      <p class="lead">O "³" do nosso nome não é por acaso.</p>
+    </div>
+    <div class="grid g3" style="margin-top:48px">
+      <div class="card pillar"><span class="tag">Para o médico</span><ul>
+        <li><b>Agenda sempre cheia</b><span>Vagas canceladas preenchidas pela fila de espera.</span></li>
+        <li><b>Novos pacientes</b><span>Captados de madrugada, aos domingos e nos feriados.</span></li>
+        <li><b>Previsibilidade</b><span>Menos faltas, faturamento mais estável.</span></li></ul></div>
+      <div class="card pillar"><span class="tag">Para a secretária</span><ul>
+        <li><b>Menos repetição</b><span>Dúvidas e agendamentos simples ficam com o Assistente.</span></li>
+        <li><b>Recepção VIP</b><span>Atenção total a quem está na sala de espera.</span></li>
+        <li><b>Paz de espírito</b><span>Nada de 200 mensagens acumuladas na segunda-feira.</span></li></ul></div>
+      <div class="card pillar"><span class="tag">Para o paciente</span><ul>
+        <li><b>Respostas em segundos</b><span>Sem horas esperando retorno.</span></li>
+        <li><b>Autonomia 24h</b><span>Marca, remarca ou cancela quando quiser.</span></li>
+        <li><b>Cuidado proativo</b><span>Lembretes que demonstram organização.</span></li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. OBJEÇÃO -->
+<section class="bg-gray">
+  <div class="container quote">
+    <h2>"Mas a minha secretária já dá conta…"</h2>
+    <p>Ter uma secretária eficiente é ótimo, mas o tempo dela é valioso demais para tarefas repetitivas.</p>
+    <p>Uma clínica com 3 médicos recebe de 250 a 300 mensagens por dia. Em horário comercial, isso dá <strong>uma interrupção a cada 2 minutos</strong>.</p>
+    <p>O Assistente não substitui a sua secretária, ele potencializa o trabalho dela. E quando ela encerra o expediente ou sai de férias, <strong>a agenda continua enchendo</strong>.</p>
+  </div>
+</section>
+
+<!-- 8. ROI -->
+<section>
+  <div class="container split">
+    <div>
+      <p class="eyebrow">Faça as contas</p>
+      <h2>Evitar uma falta por mês já paga o Assistente</h2>
+      <p class="lead">Simule quanto sua clínica deixa na mesa com faltas e horários vazios.</p>
+    </div>
+    <div class="calc">
+      <label for="c1">Consultas por mês</label><input id="c1" type="number" value="200">
+      <label for="c2">Taxa de faltas (%)</label><input id="c2" type="number" value="15">
+      <label for="c3">Valor médio da consulta (R$)</label><input id="c3" type="number" value="350">
+      <div class="result"><span>Faturamento perdido por mês</span><b id="res">R$ 0</b><small>Reduzir as faltas pela metade recuperaria <strong id="res2">R$ 0</strong>/mês.</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. DEPOIMENTOS (substituir por reais) -->
+<section class="bg-gray">
+  <div class="container">
+    <div class="center"><p class="eyebrow">Quem usa recomenda</p><h2>O que dizem nossos clientes</h2></div>
+    <div class="grid g3" style="margin-top:48px">
+      <div class="card testi"><p>"[Depoimento real sobre agenda cheia]"</p><div class="who"><div class="avatar"></div><div><b>Dr(a). Nome</b><span>Especialidade · Cidade</span></div></div></div>
+      <div class="card testi"><p>"[Depoimento real da secretária]"</p><div class="who"><div class="avatar"></div><div><b>Nome</b><span>Secretária · Clínica X</span></div></div></div>
+      <div class="card testi"><p>"[Depoimento real sobre faltas]"</p><div class="who"><div class="avatar"></div><div><b>Dr(a). Nome</b><span>Especialidade · Cidade</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. OFERTA -->
+<section id="oferta">
+  <div class="container">
+    <div class="offer">
+      <p class="eyebrow">Avalie antes de investir</p>
+      <h2>O risco é todo nosso</h2>
+      <p class="lead" style="color:#c9d3e0">Use o Assistente por 30 dias sem pagar nada. Se não fizer sentido, é só encerrar.</p>
+      <div class="grid g2">
+        <div class="item"><div class="num">01</div><div><h3>1º mês por nossa conta</h3><p>Ajustamos o Assistente às regras da clínica junto com a sua secretária.</p></div></div>
+        <div class="item"><div class="num">02</div><div><h3>Sem taxa de implantação</h3><p>Você não paga nada para começar.</p></div></div>
+        <div class="item"><div class="num">03</div><div><h3>Sem fidelidade ou multa</h3><p>Mensalidade simples. Cancele quando quiser.</p></div></div>
+        <div class="item"><div class="num">04</div><div><h3>Indique e ganhe</h3><p>1 mês de isenção para cada clínica indicada que fechar.</p></div></div>
+      </div>
+      <a href="https://wa.me/55[NUMERO]?text=Quero%20testar%20o%20Assistente" class="btn btn-primary">Testar 30 dias grátis →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 11. FAQ -->
+<section id="faq" class="bg-gray">
+  <div class="container">
+    <div class="center"><p class="eyebrow">Dúvidas frequentes</p><h2>Perguntas que todo médico faz</h2></div>
+    <div class="faq">
+      <details><summary>Preciso trocar o número de WhatsApp da clínica?</summary><p>[Resposta]</p></details>
+      <details><summary>E se o Assistente não entender o paciente?</summary><p>Ele encaminha a conversa para a secretária, sem deixar o paciente sem resposta.</p></details>
+      <details><summary>Está de acordo com a LGPD e o CFM?</summary><p>Sim. Os dados são tratados com segurança e o Assistente só responde a quem procura a clínica. Não fazemos disparos em massa.</p></details>
+      <details><summary>Funciona com convênios?</summary><p>[Resposta]</p></details>
+      <details><summary>Quanto tempo leva para começar?</summary><p>[Prazo]. Ao longo do 1º mês, os ajustes finos são feitos com a sua secretária.</p></details>
+      <details><summary>Quanto custa depois do mês grátis?</summary><p>[Valor ou "depende do número de profissionais"]. A mensalidade é pré-paga e sem fidelidade.</p></details>
+      <details><summary>Posso cancelar quando quiser?</summary><p>Sim, sem multa e sem burocracia.</p></details>
+    </div>
+    <div class="center" style="margin-top:48px"><a href="#oferta" class="btn btn-primary">Testar 30 dias grátis →</a></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div><b style="color:#fff">Santos³ Tecnologia</b><br>CNPJ [00.000.000/0001-00] · [Endereço] · Porto Alegre/RS</div>
+    <div><a href="/privacidade">Política de Privacidade</a> · <a href="/termos">Termos de Uso</a><br>© 2026 Santos³ Tecnologia</div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLUTUANTE -->
+<a class="wa" href="https://wa.me/55[NUMERO]?text=Quero%20testar%20o%20Assistente" aria-label="Fale conosco no WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7a10.7 10.7 0 0 1-5.5-1.5l-.4-.2-3.9 1 1-3.8-.2-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-1-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.4 14.4 0 0 0 5.5 4.9c2 .9 2.8.9 3.9.8a3.2 3.2 0 0 0 2.1-1.5 2.6 2.6 0 0 0 .2-1.5c-.1-.2-.3-.3-.6-.5z"/></svg>
+</a>
+
+<script>
+const fmt=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
+function calc(){
+  const c=+c1.value||0,f=(+c2.value||0)/100,v=+c3.value||0,p=c*f*v;
+  res.textContent=fmt(p); res2.textContent=fmt(p/2);
+}
+['c1','c2','c3'].forEach(id=>document.getElementById(id).addEventListener('input',calc));
+calc();
+</script>
+</body>
+</html>
